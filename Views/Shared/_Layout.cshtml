@@ -35,6 +35,9 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a asp-area="" asp-controller="Cart" asp-action="Index" title="Shopping Cart">Cart</a></li>
+                </ul>
             </div>
         </div>
     </div>
