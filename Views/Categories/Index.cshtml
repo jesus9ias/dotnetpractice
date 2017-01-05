@@ -1,5 +1,22 @@
+@model List<dotnetpractice.Models.ViewModels.Categories.CategoriesVM>
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<p>Categories</p>
+<section class="row">
+    <h1>Categories</h1>
+    <div class="panel panel-default">
+        <div class="panel-heading">Categories List</div>
+        <div class="panel-body">
+            <p>...</p>
+        </div>
+        <ul class="list-group">
+            @foreach (var category in Model)
+            {
+                <li class="list-group-item"><a href="/Categories/@category.Slug">@category.Name</a> <small>@category.Description</small></li>
+            }
+        </ul>
+    </div>
+</section>
+
