@@ -3,3 +3,10 @@
 }
 
 <p>Category Details</p>
+
+<div>@ViewBag.Category.Name</div>
+
+@foreach (var product in @ViewBag.Products)
+{
+    <p><a href="/Products/@product.Id">@product.Name</a> <small>@product.Description</small></p>
+}
