@@ -49,8 +49,8 @@ namespace dotnetpractice.Controllers
             return new List<ProductsVM>
             {
                 new ProductsVM { Id = 1, Name = "Macboc Pro", Price = 2513.45 },
-                new ProductsVM { Id = 1, Name = "Sharp TV", Price = 599.99 },
-                new ProductsVM { Id = 1, Name = "Acer Aspire", Price = 435.19 },
+                new ProductsVM { Id = 2, Name = "Sharp TV", Price = 599.99 },
+                new ProductsVM { Id = 3, Name = "Acer Aspire", Price = 435.19 },
             };
         }
     }

@@ -1,0 +1,23 @@
+@model dotnetpractice.Models.ViewModels.Products.ProductsVM
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="row">
+    <h1>@Model.Name</h1>
+    <p>@Model.Description</p>
+    <p>@Model.Price</p>
+    <p>@Model.Inventory</p>
+
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">-</button>
+      </span>
+      <input type="text" class="form-control" placeholder="1">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">+</button>
+      </span>
+    </div>
+
+</section>
