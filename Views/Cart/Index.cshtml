@@ -1,5 +1,27 @@
+@model List<dotnetpractice.Models.ViewModels.Products.ProductsVM>
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<p>Shopping Cart</p>
+<section class="row">
+    <h1>Shopping Cart</h1>
+    @foreach (var product in @Model)
+    {
+      <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">@product.Name</div>
+            <div class="panel-body">
+                <p>@product.Description</p>
+                <p>@product.Price</p>
+            </div>
+            <div class="panel-footer">
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default">Add to Cart</button>
+                <a href="/Products/@product.Id" class="btn btn-default">See Details</a>
+              </div>
+            </div>
+        </div>
+      </div>
+    }
+</section>
