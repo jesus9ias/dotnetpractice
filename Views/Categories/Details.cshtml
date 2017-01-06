@@ -2,11 +2,24 @@
     ViewData["Title"] = "Home Page";
 }
 
-<p>Category Details</p>
-
-<div>@ViewBag.Category.Name</div>
-
-@foreach (var product in @ViewBag.Products)
-{
-    <p><a href="/Products/@product.Id">@product.Name</a> <small>@product.Description</small></p>
-}
+<section class="row">
+    <h1>@ViewBag.Category.Name</h1>
+    @foreach (var product in @ViewBag.Products)
+    {
+      <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">@product.Name</div>
+            <div class="panel-body">
+                <p>@product.Description</p>
+                <p>@product.Price</p>
+            </div>
+            <div class="panel-footer">
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default">Add to Cart</button>
+                <button type="button" class="btn btn-default">See Details</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    }
+</section>
