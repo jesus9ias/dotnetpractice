@@ -11,15 +11,15 @@ namespace dotnetpractice.Controllers
     {
         public IActionResult Index()
         {
-            CategoriesServices categories = new CategoriesServices();
+            CategoriesService categories = new CategoriesService();
             return View(categories.GetCategories());
         }
 
         [Route("Categories/{Slug}")]
         public IActionResult Details(string Slug)
         {
-            CategoriesServices categories = new CategoriesServices();
-            ProductsServices products = new ProductsServices();
+            CategoriesService categories = new CategoriesService();
+            ProductsService products = new ProductsService();
             ViewBag.Category = categories.GetCategory(Slug);
             ViewBag.Products = products.GetProducts();
             return View();

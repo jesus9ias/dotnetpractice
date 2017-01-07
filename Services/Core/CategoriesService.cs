@@ -7,7 +7,7 @@ using dotnetpractice.Models.ViewModels.Categories;
 
 namespace dotnetpractice.Services.Core
 {
-    public class CategoriesServices
+    public class CategoriesService
     {
         public CategoriesVM GetCategory(string Slug)
         {

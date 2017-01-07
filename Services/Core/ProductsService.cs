@@ -7,7 +7,7 @@ using dotnetpractice.Models.ViewModels.Products;
 
 namespace dotnetpractice.Services.Core
 {
-    public class ProductsServices
+    public class ProductsService
     {
         public ProductsVM GetProduct(int Id)
         {

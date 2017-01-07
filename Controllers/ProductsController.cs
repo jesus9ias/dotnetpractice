@@ -11,14 +11,14 @@ namespace dotnetpractice.Controllers
     {
         public IActionResult Index()
         {
-            ProductsServices products = new ProductsServices();
+            ProductsService products = new ProductsService();
             return View(products.GetProducts());
         }
 
         [Route("Products/{Id}")]
         public IActionResult Details(int Id)
         {
-            ProductsServices products = new ProductsServices();
+            ProductsService products = new ProductsService();
             return View(products.GetProduct(Id));
         }
 
