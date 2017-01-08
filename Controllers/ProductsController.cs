@@ -15,11 +15,17 @@ namespace dotnetpractice.Controllers
             return View(products.GetProducts());
         }
 
-        [Route("Products/{Id}")]
+        [Route("Products/{Id:int}")]
         public IActionResult Details(int Id)
         {
             ProductsService products = new ProductsService();
             return View(products.GetProduct(Id));
+        }
+
+        public IActionResult New()
+        {
+          CategoriesService categories = new CategoriesService();
+          return View(categories.GetCategories());
         }
 
         public IActionResult Error()
