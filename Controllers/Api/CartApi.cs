@@ -13,7 +13,6 @@ namespace dotnetpractice.Controllers.Api
         [Route("api/[controller]/GetCartProducts")]
         public JsonResult GetCartProducts()
         {
-            //ResponseService Response = new ResponseService();
             ProductsService products = new ProductsService();
             return Json(ResponseService.GetResponse("200", products.GetProducts()));
         }
@@ -23,18 +22,6 @@ namespace dotnetpractice.Controllers.Api
         public JsonResult BuyCartProducts()
         {
             return Json(new List<int>{1,2,8,3});
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

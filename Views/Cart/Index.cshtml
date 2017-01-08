@@ -6,22 +6,37 @@
 
 <section class="row">
     <h1>Shopping Cart</h1>
-    @foreach (var product in @Model)
-    {
-      <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">@product.Name</div>
-            <div class="panel-body">
-                <p>@product.Description</p>
-                <p>@product.Price</p>
-            </div>
-            <div class="panel-footer">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default">Add to Cart</button>
-                <a href="/Products/@product.Id" class="btn btn-default">See Details</a>
-              </div>
-            </div>
+    <div id="cartProducts"></div>
+</section>
+
+@section scripts {
+  <script id="cartProducts-template" type="text/x-handlebars-template">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">{{name}}</div>
+        <div class="panel-body">
+            <p>{{description}}</p>
+            <p>{{price}}</p>
+        </div>
+        <div class="panel-footer">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default">Add to Cart</button>
+            <a href="/Products/{{id}}" class="btn btn-default">See Details</a>
+          </div>
         </div>
       </div>
-    }
-</section>
+    </div>
+  </script>
+
+    <script type="text/javascript">
+      var source = $("#cartProducts-template").html();
+      var template = Handlebars.compile(source);
+      $.post('/Api/CartApi/GetCartProducts', {}, function(res) {
+        console.log(res);
+        var data = res.data;
+        for (i in data) {
+          $('#cartProducts').append(template(data[i]));
+        }
+      });
+    </script>
+}
