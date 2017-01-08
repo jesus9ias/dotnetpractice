@@ -6,13 +6,13 @@
 
 <section>
   <div class="row">
-    <h1>New Product</h1>
+    <h1>Edit Product</h1>
   </div>
   <hr>
   <div class="row">
     <div class="panel">
       <div class="panel-body">
-        <form id="newProductForm" class="col-sm-8 col-sm-offset-2">
+        <form id="editProductForm" class="col-sm-8 col-sm-offset-2">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Name" maxlength="30">
           </div>
@@ -23,7 +23,7 @@
             @Html.DropDownList("Category", new SelectList(Model, "Slug", "Name"), "Select Category", new { @class = "form-control" })
           </div>
           <div class="form-group">
-            <input type="submit" class="btn btn-info" value="Save" >
+            <input type="submit" class="btn btn-info" value="Update" >
             <a href="/Products" class="btn btn-default">Return</a>
           </div>
         </form>
@@ -34,10 +34,10 @@
 
 @section scripts {
   <script type="text/javascript">
-    $('#newProductForm').submit(function(event) {
+    $('editProductForm').submit(function(event) {
       event.preventDefault();
-      console.log('save');
-      $.post('/Api/ProductsApi/Save', {}, function(res) {
+      console.log('Update');
+      $.post('/Api/ProductsApi/Update', {}, function(res) {
         console.log(res);
       });
     });

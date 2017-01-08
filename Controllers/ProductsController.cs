@@ -22,6 +22,13 @@ namespace dotnetpractice.Controllers
             return View(products.GetProduct(Id));
         }
 
+        [Route("Products/{Id:int}/Edit")]
+        public IActionResult Edit(int Id)
+        {
+          CategoriesService categories = new CategoriesService();
+          return View(categories.GetCategories());
+        }
+
         public IActionResult New()
         {
           CategoriesService categories = new CategoriesService();
