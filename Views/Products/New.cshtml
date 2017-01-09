@@ -37,7 +37,7 @@
     $('#newProductForm').submit(function(event) {
       event.preventDefault();
       console.log('save');
-      $.post('/Api/ProductsApi/Save', {}, function(res) {
+      $.post('/Api/ProductsApi', {}, function(res) {
         console.log(res);
       });
     });

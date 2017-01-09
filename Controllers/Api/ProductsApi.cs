@@ -18,7 +18,14 @@ namespace dotnetpractice.Controllers.Api
             return Json(ResponseService.GetResponse("200", products.GetProducts()));
         }
 
-        [HttpPut]
+        [Route("Api/[controller]/{Id:int}")]
+        public JsonResult Get(int Id)
+        {
+            ProductsService products = new ProductsService();
+            return Json(ResponseService.GetResponse("200", products.GetProduct(Id)));
+        }
+
+        [HttpPost]
         [Route("Api/[controller]/{Id:int}")]
         public JsonResult Update(ProductsVM model)
         {

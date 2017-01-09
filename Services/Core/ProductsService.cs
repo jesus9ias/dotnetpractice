@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dotnetpractice.Models.ViewModels.Products;
+using dotnetpractice.Models.ViewModels.Categories;
 
 namespace dotnetpractice.Services.Core
 {
@@ -13,11 +14,15 @@ namespace dotnetpractice.Services.Core
         {
             return new ProductsVM
             {
-                Id = 1,
+                Id = Id,
                 Name = "Sharp TV",
                 Description = "A big TV",
                 Price = 300.21,
-                Inventory = 11
+                Inventory = 11,
+                Category = new CategoriesVM
+                {
+                  Slug = "electronics"
+                }
             };
         }
 

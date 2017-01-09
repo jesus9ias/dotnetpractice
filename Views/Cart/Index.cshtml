@@ -28,15 +28,15 @@
     </div>
   </script>
 
-    <script type="text/javascript">
-      var source = $("#cartProducts-template").html();
-      var template = Handlebars.compile(source);
-      $.post('/Api/CartApi/GetCartProducts', {}, function(res) {
-        console.log(res);
-        var data = res.data;
-        for (i in data) {
-          $('#cartProducts').append(template(data[i]));
-        }
-      });
-    </script>
+  <script type="text/javascript">
+    var source = $("#cartProducts-template").html();
+    var template = Handlebars.compile(source);
+    $.post('/Api/CartApi/GetCartProducts', {}, function(res) {
+      console.log(res);
+      var data = res.data;
+      for (i in data) {
+        $('#cartProducts').append(template(data[i]));
+      }
+    });
+  </script>
 }
