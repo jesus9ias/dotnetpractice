@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dotnetpractice.Models.ViewModels.Products;
 using dotnetpractice.Models.ViewModels.Categories;
+using dotnetpractice.Models;
 
 namespace dotnetpractice.Services.Core
 {
     public class ProductsService
     {
+
         public ProductsVM GetProduct(int Id)
         {
             return new ProductsVM
