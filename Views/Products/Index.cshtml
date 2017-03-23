@@ -6,6 +6,7 @@
 
 <section class="row">
     <h1>Products</h1>
+    <div class="col-md-12">
     @foreach (var product in @Model)
     {
       <div class="col-md-6">
@@ -24,5 +25,6 @@
         </div>
       </div>
     }
+    </div>
     <a href="/Products/New" class="btn btn-default">New Product</a>
 </section>

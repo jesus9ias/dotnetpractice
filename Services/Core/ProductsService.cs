@@ -21,10 +21,7 @@ namespace dotnetpractice.Services.Core
                 Description = "A big TV",
                 Price = 300.21,
                 Inventory = 11,
-                Category = new CategoriesVM
-                {
-                  Slug = "electronics"
-                }
+                Category = 1
             };
         }
 

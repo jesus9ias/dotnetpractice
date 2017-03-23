@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using dotnetpractice.Services.Core;
 using dotnetpractice.Models;
+using dotnetpractice.Models.ViewModels.Products;
 
 namespace dotnetpractice.Controllers
 {
@@ -20,8 +21,21 @@ namespace dotnetpractice.Controllers
         public IActionResult Index()
         {
             var productsDb = dbContext.Products.OrderByDescending(a => a.Id).Take(10);
-            ProductsService products = new ProductsService();
-            return View(products.GetProducts());
+
+            List<ProductsVM> products = productsDb.Select(a => new ProductsVM()
+            {
+              Id = a.Id,
+              Name = a.Name,
+              Description = a.Description,
+              Price = a.Price,
+              Inventory = a.Inventory,
+              Image = a.Image,
+              Category = a.Category
+            }).ToList();
+
+            //  List<Product> products = new List<Product>(productsDb.ToList());
+            //  ProductsService products = new ProductsService();
+            return View(products);
         }
 
         [Route("Products/{Id:int}")]

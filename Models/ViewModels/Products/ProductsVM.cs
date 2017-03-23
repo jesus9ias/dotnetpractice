@@ -14,6 +14,6 @@ namespace dotnetpractice.Models.ViewModels.Products
         public double Price { get; set; }
         public int Inventory { get; set; }
         public string Image { get; set; }
-        public CategoriesVM Category { get; set; }
+        public int Category { get; set; }
     }
 }
