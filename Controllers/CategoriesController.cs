@@ -9,6 +9,12 @@ namespace dotnetpractice.Controllers
 {
     public class CategoriesController : Controller
     {
+        private WebsiteDbContext dbContext;
+        public CategoriesController(WebsiteDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public IActionResult Index()
         {
             CategoriesService categories = new CategoriesService();
@@ -19,7 +25,7 @@ namespace dotnetpractice.Controllers
         public IActionResult Details(string Slug)
         {
             CategoriesService categories = new CategoriesService();
-            ProductsService products = new ProductsService();
+            ProductsService products = new ProductsService(dbContext);
             ViewBag.Category = categories.GetCategory(Slug);
             ViewBag.Products = products.GetProducts();
             return View();

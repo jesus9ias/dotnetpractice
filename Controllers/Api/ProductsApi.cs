@@ -11,17 +11,23 @@ namespace dotnetpractice.Controllers.Api
 
     public class ProductsApi : Controller
     {
+        private WebsiteDbContext dbContext;
+        public ProductsApi(WebsiteDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         [Route("Api/[controller]")]
         public JsonResult Index()
         {
-            ProductsService products = new ProductsService();
+            ProductsService products = new ProductsService(dbContext);
             return Json(ResponseService.GetResponse("200", products.GetProducts()));
         }
 
         [Route("Api/[controller]/{Id:int}")]
         public JsonResult Get(int Id)
         {
-            ProductsService products = new ProductsService();
+            ProductsService products = new ProductsService(dbContext);
             return Json(ResponseService.GetResponse("200", products.GetProduct(Id)));
         }
 

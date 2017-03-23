@@ -11,29 +11,41 @@ namespace dotnetpractice.Services.Core
 {
     public class ProductsService
     {
+        private WebsiteDbContext dbContext { get; set; }
+
+        public ProductsService(WebsiteDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
 
         public ProductsVM GetProduct(int Id)
         {
+            var productDb = dbContext.Products.First(b => b.Id == Id);
+
             return new ProductsVM
             {
-                Id = Id,
-                Name = "Sharp TV",
-                Description = "A big TV",
-                Price = 300.21,
-                Inventory = 11,
-                Category = 1
+                Id = productDb.Id,
+                Name = productDb.Name,
+                Description = productDb.Description,
+                Price = productDb.Price,
+                Inventory = productDb.Inventory,
+                Category = productDb.Category
             };
         }
 
         public List<ProductsVM> GetProducts()
         {
-            return new List<ProductsVM>
+            var productsDb = dbContext.Products.OrderByDescending(a => a.Id).Take(10);
+            return productsDb.Select(a => new ProductsVM()
             {
-                new ProductsVM { Id = 1, Name = "Macboc Pro", Price = 2513.45 },
-                new ProductsVM { Id = 2, Name = "Sharp TV", Price = 599.99 },
-                new ProductsVM { Id = 3, Name = "Acer Aspire", Price = 435.19 },
-                new ProductsVM { Id = 4, Name = "Pavilion", Price = 543.21 }
-            };
+              Id = a.Id,
+              Name = a.Name,
+              Description = a.Description,
+              Price = a.Price,
+              Inventory = a.Inventory,
+              Image = a.Image,
+              Category = a.Category
+            }).ToList();
         }
     }
 }

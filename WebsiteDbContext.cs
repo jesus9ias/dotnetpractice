@@ -5,8 +5,7 @@ namespace dotnetpractice
 {
     public class WebsiteDbContext : DbContext
     {
-        public WebsiteDbContext(DbContextOptions<WebsiteDbContext> options)
-            : base(options)
+        public WebsiteDbContext(DbContextOptions<WebsiteDbContext> options) : base(options)
         {
 
         }
