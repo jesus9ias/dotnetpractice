@@ -1,10 +1,12 @@
+@model dotnetpractice.Models.ViewModels.Categories.CategoryProductsVM
+
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Detalle de categoria";
 }
 
 <section class="row">
-    <h1>@ViewBag.Category.Name</h1>
-    @foreach (var product in @ViewBag.Products)
+    <h1>@Model.Category.Name</h1>
+    @foreach (var product in @Model.Products)
     {
       <div class="col-md-6">
         <div class="panel panel-default">

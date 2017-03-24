@@ -18,34 +18,23 @@ namespace dotnetpractice.Services.Core
             this.dbContext = dbContext;
         }
 
-        public ProductsVM GetProduct(int Id)
+        public Product GetProduct(int Id)
         {
-            var productDb = dbContext.Products.First(b => b.Id == Id);
-
-            return new ProductsVM
-            {
-                Id = productDb.Id,
-                Name = productDb.Name,
-                Description = productDb.Description,
-                Price = productDb.Price,
-                Inventory = productDb.Inventory,
-                Category = productDb.Category
-            };
+            return dbContext.Products.First(b => b.Id == Id);
         }
 
-        public List<ProductsVM> GetProducts()
+        public IQueryable<Product> GetProducts(int CategoryId = 0)
         {
-            var productsDb = dbContext.Products.OrderByDescending(a => a.Id).Take(10);
-            return productsDb.Select(a => new ProductsVM()
+            IQueryable<Product> productsDb = null;
+            if (CategoryId > 0)
             {
-              Id = a.Id,
-              Name = a.Name,
-              Description = a.Description,
-              Price = a.Price,
-              Inventory = a.Inventory,
-              Image = a.Image,
-              Category = a.Category
-            }).ToList();
+                productsDb = dbContext.Products.Where(b => b.Category == CategoryId).OrderByDescending(a => a.Id);
+            }
+            else
+            {
+                productsDb = dbContext.Products.OrderByDescending(a => a.Id);
+            }
+            return productsDb;
         }
     }
 }

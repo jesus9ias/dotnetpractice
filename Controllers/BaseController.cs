@@ -11,6 +11,13 @@ namespace dotnetpractice.Controllers
 {
     public class BaseController : Controller
     {
-        
+        public WebsiteDbContext dbContext;
+
+        public BaseController(WebsiteDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
+
     }
 }

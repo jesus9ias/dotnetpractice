@@ -1,11 +1,10 @@
-@using Newtonsoft.Json
 @model dotnetpractice.Models.ViewModels.Products.ProductsVM
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<section>
+<section id="app">
   <div class="row">
     <h1>Edit Product</h1>
   </div>
@@ -13,7 +12,26 @@
   <div class="row">
     <div class="panel">
       <div class="panel-body">
-        <form id="editProductForm" class="col-sm-8 col-sm-offset-2">
+        <form id="editProductForm" class="col-sm-8 col-sm-offset-2" v-on:submit.prevent="updateProduct">
+            <div class="form-group">
+                <input type="text" class="form-control" id="Name" placeholder="Name" maxlength="30" v-model="viewModel.Name">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" rows="8" cols="80" id="Description" placeholder="Description">{{ viewModel.Description }}</textarea>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" id="Inventory" placeholder="Inventory" v-model="viewModel.Inventory">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" id="Price" placeholder="Price" v-model="viewModel.Price">
+            </div>
+            <div class="form-group">
+                <select id="Category" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-info" value="Update">
+                <a href="/Products" class="btn btn-default">Return</a>
+            </div>
         </form>
       </div>
     </div>
@@ -21,57 +39,20 @@
 </section>
 
 @section scripts {
-  <script id="editProduct-template" type="text/x-handlebars-template">
-    <div class="form-group">
-      <input type="text" class="form-control" id="Name" placeholder="Name" maxlength="30" value="{{ name }}">
-    </div>
-    <div class="form-group">
-      <textarea class="form-control" rows="8" cols="80" id="Description" placeholder="Description">{{ description }}</textarea>
-    </div>
-    <div class="form-group">
-      <input type="number" class="form-control" id="Inventory" placeholder="Inventory" value="{{ inventory }}">
-    </div>
-    <div class="form-group">
-      <input type="number" class="form-control" id="Price" placeholder="Price" value="{{ price }}">
-    </div>
-    <div class="form-group">
-      <select id="Category" class = "form-control">
-      </select>
-    </div>
-    <div class="form-group">
-      <input type="submit" class="btn btn-info" value="Update" >
-      <a href="/Products" class="btn btn-default">Return</a>
-    </div>
-  </script>
-
   <script type="text/javascript">
-    var source = $("#editProduct-template").html();
-    var template = Handlebars.compile(source);
-    var categoriesList = @Html.Raw(JsonConvert.SerializeObject(Model));
-    $.get('/Api/ProductsApi/3', {}, function(res) {
-      console.log(res);
-      $('#editProductForm').html(template(res.data));
-      var selected = '';
-      for (i in categoriesList) {
-        selected = (categoriesList[i].Slug === res.data.category.slug) ? 'selected="selected"' : '';
-        $('#Category').append('<option value="' + categoriesList[i].Slug + '" ' + selected + '>' + categoriesList[i].Name + '</option>');
-      }
-    });
+      var app = new Vue({
+          el: "#app",
+          data: function () {
+              return {
+                  viewModel: viewModel
+              }
+          },
+          methods: {
+              updateProduct() {
+                  console.log(this.viewModel);
 
-    $('#editProductForm').submit(function(event) {
-      event.preventDefault();
-      console.log('Update');
-      var updateData = {
-        Id: 1,
-        Name: $('#Name').val(),
-        Description: $('#Description').val(),
-        Price: $('#Price').val(),
-        Inventory: $('#Inventory').val(),
-        Category: { Slug: $('#Category').val() },
-      };
-      $.post('/Api/ProductsApi/3', updateData, function(res) {
-        console.log(res);
+              }
+          }
       });
-    });
   </script>
 }

@@ -1,7 +1,7 @@
 @model List<dotnetpractice.Models.ViewModels.Categories.CategoriesVM>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "All Categories";
 }
 
 <section class="row">
@@ -14,7 +14,7 @@
         <ul class="list-group">
             @foreach (var category in Model)
             {
-                <li class="list-group-item"><a href="/Categories/@category.Slug">@category.Name</a> <small>@category.Description</small></li>
+                <li class="list-group-item"><a href="/Categories/@category.Id">@category.Name</a> <small>@category.Description</small></li>
             }
         </ul>
     </div>
