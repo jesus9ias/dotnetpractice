@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace dotnetpractice.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        public HomeController(WebsiteDbContext dbContext) : base(dbContext) { }
+
         public IActionResult Index()
         {
             return View();

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using dotnetpractice.Services.Core;
-using dotnetpractice.Models.ViewModels.Categories;
-using dotnetpractice.Models.ViewModels.Products;
+using dotnetpractice.Services;
 using dotnetpractice.Models;
+using dotnetpractice.Models.ViewModels;
 
 namespace dotnetpractice.Controllers
 {
@@ -16,19 +15,28 @@ namespace dotnetpractice.Controllers
 
         public IActionResult Index()
         {
-            CategoriesService categories = new CategoriesService(dbContext);
-            return View(categories.GetCategories());
+            IQueryable<Category> catList = categories.GetCategories();
+            return View(catList.Select(a => new CategoriesVM()
+            {
+                Id = a.Id,
+                Name = a.Name,
+                Description = a.Description
+            }).ToList());
         }
 
         [Route("Categories/{Id}")]
         public IActionResult Details(int Id)
         {
-            CategoriesService categories = new CategoriesService(dbContext);
-            ProductsService products = new ProductsService(dbContext);
+            Category cat = categories.GetCategory(Id);
             IQueryable<Product> productList = products.GetProducts(CategoryId: Id);
             CategoryProductsVM CatProducts = new CategoryProductsVM
             {
-                Category = categories.GetCategory(Id),
+                Category = new CategoriesVM()
+                {
+                    Id = cat.Id,
+                    Name = cat.Name,
+                    Description = cat.Description
+                },
                 Products = productList.Select(a => new ProductsVM()
                 {
                     Id = a.Id,

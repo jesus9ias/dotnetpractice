@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace dotnetpractice.Models.ViewModels.Common
+namespace dotnetpractice.Models.ApiModels
 {
     public class BaseResponse
     {

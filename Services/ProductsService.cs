@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using dotnetpractice.Models.ViewModels.Products;
-using dotnetpractice.Models.ViewModels.Categories;
 using dotnetpractice.Models;
+using dotnetpractice.Models.ViewModels;
 
-namespace dotnetpractice.Services.Core
+namespace dotnetpractice.Services
 {
     public class ProductsService
     {
@@ -16,11 +15,6 @@ namespace dotnetpractice.Services.Core
         public ProductsService(WebsiteDbContext dbContext)
         {
             this.dbContext = dbContext;
-        }
-
-        public Product GetProduct(int Id)
-        {
-            return dbContext.Products.First(b => b.Id == Id);
         }
 
         public IQueryable<Product> GetProducts(int CategoryId = 0)
@@ -36,5 +30,10 @@ namespace dotnetpractice.Services.Core
             }
             return productsDb;
         }
+
+        public Product GetProduct(int Id)
+        {
+            return dbContext.Products.First(b => b.Id == Id);
+        }        
     }
 }

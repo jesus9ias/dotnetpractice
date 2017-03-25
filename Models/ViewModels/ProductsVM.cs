@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using dotnetpractice.Models.ViewModels.Categories;
 
-namespace dotnetpractice.Models.ViewModels.Products
+namespace dotnetpractice.Models.ViewModels
 {
     public class ProductsVM
     {

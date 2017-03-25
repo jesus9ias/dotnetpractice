@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace dotnetpractice.Models.ViewModels.Categories
+namespace dotnetpractice.Models.ViewModels
 {
     public class CategoriesVM
     {

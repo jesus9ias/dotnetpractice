@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using dotnetpractice.Models.ViewModels.Common;
+using dotnetpractice.Models.ApiModels;
 
-namespace dotnetpractice.Services.Core
+namespace dotnetpractice.Services
 {
     public class ResponseService
     {
