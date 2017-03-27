@@ -1,3 +1,4 @@
+@model dotnetpractice.Models.ViewModels.HomeVM
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -73,8 +74,10 @@
     <div class="col-md-4">
         <h2>Categories</h2>
         <ul>
-          <li>@Html.ActionLink("Video Games", "1", "Categories", null, null)</li>
-          <li>@Html.ActionLink("Electronics", "2", "Categories", null, null)</li>
+            @foreach(dotnetpractice.Models.ViewModels.CategoriesVM item in @Model.Categories)
+            {
+                <li><a href="/Categories/@item.Id">@item.Description</a></li>
+            }
         </ul>
     </div>
     <div class="col-md-4">

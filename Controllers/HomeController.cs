@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using dotnetpractice.Models.ViewModels;
+using dotnetpractice.Models;
 
 namespace dotnetpractice.Controllers
 {
@@ -12,7 +14,17 @@ namespace dotnetpractice.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IQueryable<Category> catList = categories.GetCategories();
+            HomeVM home = new HomeVM()
+            {
+                Categories = catList.Select(a => new CategoriesVM()
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Description = a.Description
+                }).ToList()
+            };
+            return View(home);
         }
 
         public IActionResult About()
